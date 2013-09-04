@@ -38,6 +38,7 @@ public class RuntimeOptions {
     private URL dotCucumber;
     private boolean dryRun;
     private boolean strict = false;
+    private boolean wip = false;
     private boolean monochrome = false;
     private SnippetType snippetType = SnippetType.UNDERSCORE;
 
@@ -100,6 +101,8 @@ public class RuntimeOptions {
                 strict = !arg.startsWith("--no-");
             } else if (arg.equals("--no-monochrome") || arg.equals("--monochrome") || arg.equals("-m")) {
                 monochrome = !arg.startsWith("--no-");
+            } else if (arg.equals("--wip")) {
+                wip = true;
             } else if (arg.equals("--snippets")) {
                 String nextArg = args.remove(0);
                 snippetType = SnippetType.fromString(nextArg);
@@ -183,6 +186,10 @@ public class RuntimeOptions {
 
     public boolean isStrict() {
         return strict;
+    }
+
+    public boolean isWip() {
+        return wip;
     }
 
     public boolean isDryRun() {
